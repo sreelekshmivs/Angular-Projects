@@ -1,0 +1,52 @@
+<!-- product-add.component.html -->
+
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="productForm" novalidate (ngSubmit)="addProduct()">
+        <div class="form-group">
+          <label class="col-md-4">Product Name</label>
+          <input type="text" class="form-control" 
+            formControlName="pname" 
+            #pname />
+        </div>
+        <div *ngIf="productForm.controls['pname'].invalid && (productForm.controls['pname'].dirty || productForm.controls['pname'].touched)" class="alert alert-danger">
+          <div *ngIf="productForm.controls['pname'].errors.required">
+            Product Name is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Product Description </label>
+          <textarea class="form-control" rows = 7 cols = "5"
+          formControlName="pdesc" 
+          #pdesc></textarea>
+        </div>
+        <div *ngIf="productForm.controls['pdesc'].invalid && (productForm.controls['pdesc'].dirty || productForm.controls['pdesc'].touched)" class="alert alert-danger">
+          <div *ngIf="productForm.controls['pdesc'].errors.required">
+            Product Description is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Product Price</label>
+          <input type="text" class="form-control" 
+            formControlName="price" 
+            #price
+          />
+        </div>
+        <div *ngIf="productForm.controls['price'].invalid && (productForm.controls['price'].dirty || productForm.controls['price'].touched)" class="alert alert-danger">
+          <div *ngIf="productForm.controls['price'].errors.required">
+            Product Price is required.
+          </div>
+        </div>
+        <div [ngClass]="form-group">
+            <label for="Date">Manufacturing Date</label>
+            <input type="date" class="form-control" formControlName="pdate">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary"
+            [disabled]="productForm.pristine || productForm.invalid" >
+              Create Product
+            </button>
+        </div>
+      </form>
+    </div>
+  </div>
